@@ -1,0 +1,101 @@
+[2024-03-25T20:19:43.274+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: NamDAG.create_collection_qdrant scheduled__2024-03-23T05:36:45.664086+00:00 [queued]>
+[2024-03-25T20:19:43.288+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: NamDAG.create_collection_qdrant scheduled__2024-03-23T05:36:45.664086+00:00 [queued]>
+[2024-03-25T20:19:43.289+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-03-25T20:19:43.332+0000] {taskinstance.py:2214} INFO - Executing <Task(PythonOperator): create_collection_qdrant> on 2024-03-23 05:36:45.664086+00:00
+[2024-03-25T20:19:43.363+0000] {standard_task_runner.py:60} INFO - Started process 74 to run task
+[2024-03-25T20:19:43.373+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'NamDAG', 'create_collection_qdrant', 'scheduled__2024-03-23T05:36:45.664086+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/fit_news.py', '--cfg-path', '/tmp/tmp790m_x4_']
+[2024-03-25T20:19:43.381+0000] {standard_task_runner.py:88} INFO - Job 16: Subtask create_collection_qdrant
+[2024-03-25T20:19:43.550+0000] {task_command.py:423} INFO - Running <TaskInstance: NamDAG.create_collection_qdrant scheduled__2024-03-23T05:36:45.664086+00:00 [running]> on host f32b75e21c1d
+[2024-03-25T20:19:43.755+0000] {taskinstance.py:2510} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='qxnam' AIRFLOW_CTX_DAG_ID='NamDAG' AIRFLOW_CTX_TASK_ID='create_collection_qdrant' AIRFLOW_CTX_EXECUTION_DATE='2024-03-23T05:36:45.664086+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-23T05:36:45.664086+00:00'
+[2024-03-25T20:19:48.916+0000] {taskinstance.py:2728} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpcore/_exceptions.py", line 10, in map_exceptions
+    yield
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpcore/backends/sync.py", line 94, in connect_tcp
+    sock = socket.create_connection(
+  File "/usr/local/lib/python3.8/socket.py", line 808, in create_connection
+    raise err
+  File "/usr/local/lib/python3.8/socket.py", line 796, in create_connection
+    sock.connect(sa)
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpx/_transports/default.py", line 60, in map_httpcore_exceptions
+    yield
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpx/_transports/default.py", line 218, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpcore/_sync/connection_pool.py", line 253, in handle_request
+    raise exc
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpcore/_sync/connection_pool.py", line 237, in handle_request
+    response = connection.handle_request(request)
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpcore/_sync/connection.py", line 86, in handle_request
+    raise exc
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpcore/_sync/connection.py", line 63, in handle_request
+    stream = self._connect(request)
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpcore/_sync/connection.py", line 111, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpcore/backends/sync.py", line 94, in connect_tcp
+    sock = socket.create_connection(
+  File "/usr/local/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc)
+httpcore.ConnectTimeout: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/qdrant_client/http/api_client.py", line 101, in send_inner
+    response = self._client.send(request)
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpx/_client.py", line 908, in send
+    response = self._send_handling_auth(
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpx/_client.py", line 936, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpx/_client.py", line 973, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpx/_client.py", line 1009, in _send_single_request
+    response = transport.handle_request(request)
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpx/_transports/default.py", line 218, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/httpx/_transports/default.py", line 77, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 200, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 217, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/fit_news.py", line 46, in createCollection
+    collections = client.get_collections()
+  File "/home/airflow/.local/lib/python3.8/site-packages/qdrant_client/qdrant_client.py", line 1513, in get_collections
+    return self._client.get_collections(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/qdrant_client/qdrant_remote.py", line 2010, in get_collections
+    ] = self.http.collections_api.get_collections().result
+  File "/home/airflow/.local/lib/python3.8/site-packages/qdrant_client/http/api/collections_api.py", line 1345, in get_collections
+    return self._build_for_get_collections()
+  File "/home/airflow/.local/lib/python3.8/site-packages/qdrant_client/http/api/collections_api.py", line 432, in _build_for_get_collections
+    return self.api_client.request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/qdrant_client/http/api_client.py", line 74, in request
+    return self.send(request, type_)
+  File "/home/airflow/.local/lib/python3.8/site-packages/qdrant_client/http/api_client.py", line 91, in send
+    response = self.middleware(request, self.send_inner)
+  File "/home/airflow/.local/lib/python3.8/site-packages/qdrant_client/http/api_client.py", line 200, in __call__
+    return call_next(request)
+  File "/home/airflow/.local/lib/python3.8/site-packages/qdrant_client/http/api_client.py", line 103, in send_inner
+    raise ResponseHandlingException(e)
+qdrant_client.http.exceptions.ResponseHandlingException: timed out
+[2024-03-25T20:19:48.942+0000] {taskinstance.py:1149} INFO - Marking task as UP_FOR_RETRY. dag_id=NamDAG, task_id=create_collection_qdrant, execution_date=20240323T053645, start_date=20240325T201943, end_date=20240325T201948
+[2024-03-25T20:19:48.962+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 16 for task create_collection_qdrant (timed out; 74)
+[2024-03-25T20:19:48.996+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-03-25T20:19:49.017+0000] {taskinstance.py:3309} INFO - 0 downstream tasks scheduled from follow-on schedule check
